@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Blog-Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
-
   <body>
+    <% if user_signed_in? %>
+      <span>Здравствуйте, <%= current_user.email %></span>
+      <%= link_to 'Выйти', destroy_user_session_path %>
+    <% else %>
+      <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
