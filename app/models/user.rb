@@ -3,4 +3,7 @@
 # user model
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable
+
+  has_many :comments
+  has_many :articles
 end
