@@ -2,6 +2,7 @@
 
 # user model
 class User < ApplicationRecord
+  rolify
   devise :database_authenticatable, :registerable, :validatable
 
   has_many :comments

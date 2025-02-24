@@ -1,20 +1,15 @@
-<% unless comment.archived? %>
-  <p>
-    <strong>User:</strong>
-    <%= comment.user.email %>
-  </p>
+<h4>User: <%= comment.user.email %> | Status: <%= comment.status %></h4>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
 
-  <% if current_user == comment.user %>
-    <p>
-      <%= link_to "Delete Comment", [comment.article, comment], data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"
-      } %>
-    </p>
-  <% end %>
+<% if policy(comment).update? %>
+  <p>
+    <%= link_to "Delete Comment", [comment.article, comment], data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+    } %>
+  </p>
 <% end %>
