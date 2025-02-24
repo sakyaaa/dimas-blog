@@ -27,7 +27,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user == record.user
+    user == record.user || user&.has_role?(:admin)
   end
 
   def edit?
@@ -46,7 +46,11 @@ class ApplicationPolicy
     end
 
     def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
+      if user&.has_role? :admin
+        scope.all
+      else
+        scope.where(status: 'public').or(scope.where(user: user))
+      end
     end
 
     private

@@ -5,13 +5,13 @@ class ArticlesController < ApplicationController
   def index
     authorize Article
 
-    @articles = Article.all
+    @articles = policy_scope(Article)
   end
 
   def show
     authorize Article
 
-    @article = Article.find(params[:id])
+    @article = policy_scope(Article).find(params[:id])
   end
 
   def new

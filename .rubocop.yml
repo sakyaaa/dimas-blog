@@ -1,5 +1,10 @@
 inherit_from: .rubocop_todo.yml
 
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
 AllCops:
+  SuggestExtensions: false
   Exclude:
     - 'db/schema.rb'
