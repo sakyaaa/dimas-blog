@@ -9,7 +9,7 @@
     <%= comment.body %>
   </p>
 
-  <% if current_user == comment.user %>
+  <% if policy(comment).update? %>
     <p>
       <%= link_to "Delete Comment", [comment.article, comment], data: {
           turbo_method: :delete,

@@ -3,21 +3,25 @@
 # articles controller
 class ArticlesController < ApplicationController
   def index
+    authorize Article
+
     @articles = Article.all
   end
 
   def show
+    authorize Article
+
     @article = Article.find(params[:id])
   end
 
   def new
-    redirect_to root_path unless user_signed_in?
+    authorize Article
 
     @article = Article.new
   end
 
   def create
-    return unless user_signed_in?
+    authorize Article
 
     @article = Article.new(article_params)
     @article.user_id = current_user.id
@@ -32,13 +36,13 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
 
-    redirect_to @article unless current_user == @article.user
+    authorize @article
   end
 
   def update
     @article = Article.find(params[:id])
 
-    return unless current_user == @article.user
+    authorize @article
 
     if @article.update(article_params)
       redirect_to @article
@@ -50,7 +54,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
 
-    return unless current_user == @article.user
+    authorize @article
 
     @article.destroy
     redirect_to root_path, status: :see_other

@@ -3,7 +3,7 @@
 # comments controller
 class CommentsController < ApplicationController
   def create
-    return unless user_signed_in?
+    authorize Comment
 
     @article = Article.find(params[:article_id])
     @comment = @article.comments.new(comment_params)
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
 
-    return unless current_user == @comment.user
+    authorize @comment
 
     @comment.destroy
     redirect_to article_path(@article), status: :see_other

@@ -20,7 +20,7 @@
     <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
   </div>
 
-  <div>
+  <p>
     <%= form.submit %>
-  </div>
+  </p>
 <% end %>

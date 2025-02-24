@@ -12,7 +12,7 @@
   <% end %>
 </ul>
 
-<% if user_signed_in? %>
+<% if policy(Article).new? %>
   <%= link_to "New Article", new_article_path %>
 <% else %>
   <h2>Please log in to create articles</h2>
