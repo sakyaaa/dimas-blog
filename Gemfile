@@ -59,6 +59,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
 
+  # Debugger
+  gem 'byebug'
+
   # Factories for tests
   gem 'factory_bot_rails', '~> 6.2'
 
@@ -66,12 +69,11 @@ group :development, :test do
   gem 'faker', '~> 3.4', '>= 3.4.2'
 
   # Main gem for tests
-  gem 'rspec-rails', '~> 7.0.0'
-end
+  gem 'rspec-rails', '~> 7.0'
 
-group :test do
-  # Pundit tests
+  # Pundit testing
   gem 'pundit-matchers', '~> 4.0'
+
   # More inline-functionality in tests
   gem 'shoulda-matchers', '~> 6.2'
 end

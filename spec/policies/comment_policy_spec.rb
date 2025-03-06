@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CommentPolicy do
+RSpec.describe CommentPolicy, type: :policy do
   subject { described_class.new(user, comment) }
 
   let(:comment) { create(:comment) }

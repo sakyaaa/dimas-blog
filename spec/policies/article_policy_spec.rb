@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ArticlePolicy do
+RSpec.describe ArticlePolicy, type: :policy do
   subject { described_class.new(user, article) }
 
   let(:article) { create(:article) }
