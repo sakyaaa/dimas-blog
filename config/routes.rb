@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   devise_for :user
 
+  resources :users, only: %i[index show]
+
   resources :articles do
     resources :comments, only: %i[index create destroy]
   end
