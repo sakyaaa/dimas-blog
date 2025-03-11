@@ -9,7 +9,7 @@ class UserPolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
-  def update?
+  def allow_all_articles?
     user == record || user&.has_role?(:admin)
   end
 

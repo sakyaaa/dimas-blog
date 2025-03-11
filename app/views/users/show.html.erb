@@ -24,7 +24,7 @@
     <p>No public articles yet.</p>
   <% end %>
 
-  <% if policy(@user).update? %>
+  <% if policy(@user).allow_all_articles? %>
     <h2>All Articles</h2>
     <% if @articles.any? %>
       <ul>
