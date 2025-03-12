@@ -52,8 +52,14 @@ gem 'pundit', '~> 2.4'
 # Roles for users
 gem 'rolify', '~> 5.2'
 
+# Admin panel
+gem 'rails_admin', '~> 3.0'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# Styles
+gem 'cssbundling-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

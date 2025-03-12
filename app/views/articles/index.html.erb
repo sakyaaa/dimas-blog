@@ -2,12 +2,7 @@
 
 <%= link_to "Top-10 active users", users_path %>
 
-<h3>
-  There are <%= Article.public_count %> public articles
-  <% if current_user&.has_role? :admin %>
-    - <%= Article.count %> all articles
-  <% end %>
-</h3>
+<h3>There are <%= Article.public_count %> public articles</h3>
 
 <%= form_with url: articles_path, method: :get, local: true do |form| %>
   <%= form.text_field :query, placeholder: "Search articles...", value: params[:query] %>
@@ -18,7 +13,7 @@
   <% @articles.each do |article| %>
     <li>
       <% unless article.public? %>
-        <%= article.status %>: <i><%= link_to article.title, article %></i>
+        <i><%= link_to article.title, article %></i> - <%= article.status %>
       <% else %>
         <%= link_to article.title, article %>
       <% end %>

@@ -6,7 +6,7 @@
       <div><%= message %></div>
     <% end %>
   </div>
-
+  <br>
   <div>
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
@@ -15,12 +15,7 @@
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || "public" %>
-  </div>
-
-  <p>
-    <%= form.submit %>
-  </p>
+  <br>
+  <div><%= form.select :status, Visible::VALID_STATUSES, selected: article.status || "public" %></div>
+  <p><%= form.submit %></p>
 <% end %>
