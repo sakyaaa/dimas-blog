@@ -10,6 +10,7 @@ class ApplicationPolicy
     @record = record
   end
 
+  # cRud - Read
   def index?
     true
   end
@@ -18,6 +19,7 @@ class ApplicationPolicy
     true
   end
 
+  # Crud - Create
   def create?
     !user.nil?
   end
@@ -26,16 +28,31 @@ class ApplicationPolicy
     create?
   end
 
+  # crUd - Update
   def update?
-    user == record.user || user&.has_role?(:admin)
+    user&.has_role?(:admin) || user == record.user
   end
 
   def edit?
     update?
   end
 
+  # cruD - Destroy
   def destroy?
     update?
+  end
+
+  # Admin panel
+  def dashboard?
+    user&.has_role? :admin
+  end
+
+  def export?
+    dashboard?
+  end
+
+  def show_in_app?
+    dashboard?
   end
 
   # Some kind of view listing records which a particular user has access to

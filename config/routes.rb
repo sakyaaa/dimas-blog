@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # Admin panel
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   # Defines the root path route ("/")
   root 'articles#index'
 

@@ -14,12 +14,14 @@
       <span>Welcome back, <%= current_user.email %></span>
 
       <% if current_user.has_role? :admin %>
-        <span><b style="color:rgb(255, 118, 118)">superuser</b></span>
+        <span>
+          <%= link_to "admin", rails_admin_path, style: "color: #f66; font-weight: bold; text-decoration: none;" %>
+        </span>
       <% end %>
 
       <%= link_to "My profile", user_path(current_user) %>
     <% else %>
-      <%= link_to 'Log in', new_user_session_path %> or <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %>
     <% end %>
 
     <% unless request.path == "/" %>
