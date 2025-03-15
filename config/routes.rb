@@ -17,8 +17,12 @@ Rails.application.routes.draw do
   # User profiles
   resources :users, only: %i[index show]
 
-  # Articles and comments
+  # Articles, comments and likes for them
   resources :articles do
-    resources :comments, only: %i[index create destroy]
+    resources :comments, only: %i[index create destroy] do
+      resources :likes, only: %i[create destroy]
+    end
+
+    resources :likes, only: %i[create destroy]
   end
 end

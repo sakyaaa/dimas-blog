@@ -1,19 +1,4 @@
-<!---- ARTICLE ---->
-
-<h1><%= @article.title %></h1>
-<h4>Author: <%= @article.user.email %> | Status: <%= @article.status %></h4>
-
-<p><%= @article.body %></p>
-
-<% if policy(@article).update? %>
-  <%= link_to "Edit", edit_article_path(@article) %>
-  <%= link_to "Delete", article_path(@article), data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-  } %>
-<% end %>
-
-<!---- COMMENTS ---->
+<%= render @article %>
 
 <h2>Comments</h2>
 <%= render @article.comments %>
