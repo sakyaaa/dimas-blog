@@ -1,27 +1,24 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LikePolicy, type: :policy do
-  let(:user) { User.new }
+  subject { described_class.new(user, like) }
 
-  subject { described_class }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:like) { create(:like, user: user) }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context 'when the user is logged in' do
+    it { is_expected.to permit_action(:create) }
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    context 'when the user owns the like' do
+      it { is_expected.to permit_action(:destroy) }
+    end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    context 'when the user does not own the like' do
+      let(:like) { create(:like, user: other_user) }
+      it { is_expected.to forbid_action(:destroy) }
+    end
   end
 end
