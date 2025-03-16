@@ -7,6 +7,7 @@ class CreateComments < ActiveRecord::Migration[7.2]
       t.references :user, null: false, foreign_key: true
       t.text :body
       t.references :article, null: false, foreign_key: true
+      t.string :status, default: 'public'
 
       t.timestamps
     end

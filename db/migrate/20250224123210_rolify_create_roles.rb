@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# db migrate - rolify init
+# db migration for role model
 class RolifyCreateRoles < ActiveRecord::Migration[7.2]
   def change
     create_table(:roles) do |t|
