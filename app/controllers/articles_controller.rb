@@ -5,11 +5,7 @@ class ArticlesController < ApplicationController
   def index
     authorize Article
 
-    @articles = if params[:query].present?
-                  search_articles(policy_scope(Article), params[:query])
-                else
-                  policy_scope(Article)
-                end
+    @articles = search_articles(policy_scope(Article), params).paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -70,13 +66,13 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :body, :status)
   end
 
-  def search_articles(scope, query)
-    query = query.downcase
-    articles_table = Article.arel_table
-
-    scope.where(
-      articles_table[:title].lower.matches("%#{query}%")
-        .or(articles_table[:body].lower.matches("%#{query}%"))
-    )
+  def search_articles(scope, params)
+    if params[:query]
+      query = "%#{params[:query].downcase}%"
+      articles_table = policy_scope(Article).arel_table
+      scope.where(articles_table[:title].lower.matches(query).or(articles_table[:body].lower.matches(query)))
+    else
+      policy_scope(Article)
+    end
   end
 end
