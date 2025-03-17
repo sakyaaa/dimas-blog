@@ -52,6 +52,9 @@ gem 'pundit', '~> 2.4'
 # Roles for users
 gem 'rolify', '~> 5.2'
 
+# Pagination for articles
+gem 'will_paginate', '~> 4.0'
+
 # Admin panel
 gem 'rails_admin', '~> 3.0'
 

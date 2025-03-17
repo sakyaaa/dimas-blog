@@ -18,10 +18,12 @@
         <%= link_to article.title, article %>
       <% end %>
       <p style="color: #222; margin-top: 4px; margin-bottom: 4px;"><%= article.likes.count %> likes</p>
-      <p style="color: #555; margin-top: 12px; margin-bottom: 12px;"><%= truncate(article.body, length: 50) %></p>
+      <p style="color: #555; margin-top: 16px; margin-bottom: 16px;"><%= truncate(article.body, length: 50) %></p>
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate @articles, previous_label: "« Previous |", next_label: "| Next »" %><br>
 
 <% if policy(Article).new? %>
   <%= link_to "New Article", new_article_path %>
