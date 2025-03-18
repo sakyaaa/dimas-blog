@@ -25,4 +25,11 @@ Rails.application.routes.draw do
 
     resources :likes, only: %i[create destroy]
   end
+
+  # --- API --- #
+  namespace :api do
+    namespace :v1 do
+      resources :articles, only: %i[index show]
+    end
+  end
 end
