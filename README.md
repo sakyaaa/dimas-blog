@@ -13,6 +13,7 @@ This is a Ruby on Rails application designed to function as a blog platform. It 
 5. [API Endpoints](#api-endpoints)
 6. [Routes](#routes)
 7. [Database Schema](#database-schema)
+8. [Contribution](#contribution)
 
 ---
 
